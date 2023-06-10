@@ -4,8 +4,6 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-
-
 @Composable
 fun Navigation(){
 
@@ -13,7 +11,7 @@ fun Navigation(){
 
     NavHost(navController = navController, startDestination = Screens.StartCandyScreen.route){
         composable(route = Screens.StartCandyScreen.route){
-            StartCandyScreen()
+            StartCandyScreen(navController)
         }
 
         composable(route = Screens.GameSurfaceScreen.route){

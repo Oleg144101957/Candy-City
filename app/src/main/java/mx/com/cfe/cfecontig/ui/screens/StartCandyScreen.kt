@@ -1,7 +1,7 @@
 package mx.com.cfe.cfecontig.ui.screens
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -16,20 +16,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.Font
-import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import androidx.navigation.NavHostController
 import mx.com.cfe.cfecontig.CandyConstants
 import mx.com.cfe.cfecontig.R
-import mx.com.cfe.cfecontig.ui.theme.CandyCityTheme
 
 @Composable
-fun StartCandyScreen(){
-    val mercadilloBlack = FontFamily(Font(R.font.mercadillo_black))
+fun StartCandyScreen(navController: NavController){
+
     Box(modifier = Modifier.fillMaxSize()){
         Image(
             painter = painterResource(id = R.drawable.candyback),
@@ -71,14 +66,16 @@ fun StartCandyScreen(){
                 )
             }
 
-
             Box(contentAlignment = Alignment.Center,modifier = Modifier
                 .fillMaxWidth()
                 .height(90.dp)
             ){
                 Image(
                     painter = painterResource(id = R.drawable.btnback),
-                    contentDescription = "Button load game"
+                    contentDescription = "Button load game",
+                    modifier = Modifier.clickable {
+                        navController.navigate(Screens.GameSurfaceScreen.route)
+                    }
                 )
                 
                 Text(
@@ -94,10 +91,4 @@ fun StartCandyScreen(){
                 .height(64.dp))
         }
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun StartCandyScreenPreview() {
-    StartCandyScreen()
 }
