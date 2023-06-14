@@ -13,11 +13,9 @@ import mx.com.cfe.cfecontig.datacandy.UserDatabase
 import mx.com.cfe.cfecontig.datacandy.UserRepository
 import javax.inject.Singleton
 
-
 @Module
 @InstallIn(SingletonComponent::class)
 class MainCandyModule {
-
 
     @Provides
     @Singleton
@@ -25,11 +23,14 @@ class MainCandyModule {
         return UserRepository(userDao)
     }
 
-
     @Provides
     @Singleton
     fun provideDatabase(@ApplicationContext context: Context) = Room
-        .databaseBuilder(context, UserDatabase::class.java, CandyConstants.USER_DATABASE_NAME)
+        .databaseBuilder(
+            context,
+            UserDatabase::class.java,
+            CandyConstants.USER_DATABASE_NAME
+        )
         .allowMainThreadQueries()
         .build()
 

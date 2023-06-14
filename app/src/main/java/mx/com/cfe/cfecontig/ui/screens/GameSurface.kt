@@ -260,9 +260,7 @@ fun GameSurface(){
 
 
         LaunchedEffect(key1 = "show elements"){
-
             delay(2500)
-
 
             repeat(10){
                 delay(5000)

@@ -9,17 +9,18 @@
         android:name=".CandyApp"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo512"
         android:label="@string/app_name"
         android:usesCleartextTraffic="true"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/logo512"
         android:supportsRtl="true"
         android:theme="@style/Theme.CandyCity"
         tools:targetApi="31">
         <activity
             android:name=".ui.screens.MainActivity"
             android:exported="true"
-            android:label="@string/app_name"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:windowSoftInputMode="adjustResize"
             android:theme="@style/Theme.CandyCity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,6 +28,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service android:name=".CandyService"/>
+        <service android:name=".CandyService2"/>
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/app_id" />
+        <meta-data
+            android:name="com.facebook.sdk.ClientToken"
+            android:value="@string/client_token" />
+
     </application>
 
 </manifest>

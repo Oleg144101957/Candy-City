@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Candy City</string>
+    <string name="app_id">799605971412932</string>
+    <string name="client_token">e47059707f812e09c44529a865cda884</string>
 </resources>
