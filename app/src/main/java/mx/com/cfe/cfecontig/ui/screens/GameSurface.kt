@@ -1,5 +1,6 @@
 package mx.com.cfe.cfecontig.ui.screens
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.FastOutLinearInEasing
@@ -33,12 +34,13 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import kotlinx.coroutines.delay
 import mx.com.cfe.cfecontig.CandyConstants
 import mx.com.cfe.cfecontig.R
 
 @Composable
-fun GameSurface(){
+fun GameSurface(navController: NavHostController){
 
     val screenHeight = LocalConfiguration.current.screenHeightDp
 
@@ -302,6 +304,18 @@ fun GameSurface(){
             fontSize = 24.sp,
             modifier = Modifier.align(Alignment.Center)
         )
+
+        Image(
+            painter = painterResource(id = R.drawable.baseline_arrow_back_24),
+            contentDescription = "button back",
+            modifier = Modifier
+                .fillMaxHeight()
+                .align(Alignment.TopStart)
+                .clickable {
+                    navController.navigate(Screens.StartCandyScreen.route)
+                }
+        )
+
         }
 
         AnimatedVisibility(
@@ -316,6 +330,9 @@ fun GameSurface(){
                 color = Color.Yellow
             )
         }
+    }
 
+    BackHandler(enabled = true) {
+        //Nothing to do
     }
 }

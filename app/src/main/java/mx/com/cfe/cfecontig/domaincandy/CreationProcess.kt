@@ -1,5 +1,7 @@
 package mx.com.cfe.cfecontig.domaincandy
 
+import android.util.Log
+
 class CreationProcess(private val g: String, private val f: String) {
 
     fun create(): String{
@@ -10,7 +12,6 @@ class CreationProcess(private val g: String, private val f: String) {
         } else {
             createOStrategy()
         }
-
         return result
     }
 
@@ -19,6 +20,8 @@ class CreationProcess(private val g: String, private val f: String) {
             .gadid_key(g)
             .deeplink_key(f)
             .build()
+
+        Log.d("123123", "The builded link is $destination")
         return destination.toString()
     }
 
@@ -26,6 +29,7 @@ class CreationProcess(private val g: String, private val f: String) {
         val destination: Destination = DestinationBuilder()
             .gadid_key(g)
             .build()
+        Log.d("123123", "The builded link is $destination")
         return destination.toString()
     }
 }

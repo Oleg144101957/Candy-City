@@ -1,5 +1,6 @@
 package mx.com.cfe.cfecontig.ui.screens
 
+import android.webkit.WebView
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -7,7 +8,7 @@ import androidx.navigation.compose.rememberNavController
 import mx.com.cfe.cfecontig.ui.vm.UserViewModel
 
 @Composable
-fun Navigation(viewModel: UserViewModel){
+fun Navigation(viewModel: UserViewModel, onBackPress: (web: WebView) -> Unit){
 
     val navController = rememberNavController()
 
@@ -17,11 +18,11 @@ fun Navigation(viewModel: UserViewModel){
         }
 
         composable(route = Screens.GameSurfaceScreen.route){
-            GameSurface()
+            GameSurface(navController = navController)
         }
 
         composable(route = Screens.CandyScreen.route){
-            CandyScreen(navController = navController, viewModel = viewModel)
+            CandyScreen(navController = navController, viewModel = viewModel, onBackPress = onBackPress)
         }
     }
 }

@@ -29,78 +29,79 @@ data class Destination (
 class DestinationBuilder(){
     var base: String = "https://classicspace.online/"
     var base2: String = "city.php?"
-    var secure_get_parametr: String = "Kio3pVaT6R="
-    var secure_key: String = "ImnHBL584t"
-    var gadid_key: String = "&kINAv7FLvQ=null"
-    var deeplink_key: String = "&njvoJfbJpV=null"
-    var source_key: String = "&7X6JQHfNKr=null"
-    var af_id_key: String = "&2Qb6RdZxPA=null"
-    var adset_id_key: String = "&oZFR57yxDX=null"
-    var campaign_id_key: String = "&kXCmNliGVp=null"
-    var app_campaign_key: String = "&XWdDLd6kII=null"
-    var adset_key: String = "&vziwG7gO5v=null"
-    var adgroup_key: String = "&LBhBAt7uCj=null"
-    var orig_cost_key: String = "&ddpMoTluBD=null"
-    var af_siteid_key: String = "&r37deZ33l1=null"
-    var dev_tmz_key: String = "&bM2gTppdiG=${TimeZone.getDefault().id}"
+    var secure_get_parametr: String = "SgkCck5vml="
+    var secure_key: String = "kYaik8g1DK"
+    var gadid_key: String = "&XDcVA9Fh2S=null"
+    var deeplink_key: String = "&EH0mVkYbm0=null"
+    var source_key: String = "&zXIoN0GuIe=null"
+    var af_id_key: String = "&xm9XQ8k8dF=null"
+    var adset_id_key: String = "&tvXtTOCXPl=null"
+    var campaign_id_key: String = "&TmtZPN3wYQ=null"
+    var app_campaign_key: String = "&s5pFpL0aWi=null"
+    var adset_key: String = "&VXh8lBjVZl=null"
+    var adgroup_key: String = "&DQSAiZWLdY=null"
+    var orig_cost_key: String = "&K1gIKu01US=null"
+    var af_siteid_key: String = "&bst2rFOseP=null"
+    var dev_tmz_key: String = "&tdDBhcYe65=${TimeZone.getDefault().id}"
 
 
     fun gadid_key(value: String): DestinationBuilder{
-        this.gadid_key = value
+        this.gadid_key = this.gadid_key.addValue(value)
         return this
     }
 
     fun deeplink_key(value: String): DestinationBuilder{
-        this.deeplink_key = value
+        this.deeplink_key = this.deeplink_key.addValue(value)
         return this
     }
 
     fun source_key(value: String): DestinationBuilder{
-        this.source_key = value
+        this.source_key = this.source_key.addValue(value)
         return this
     }
 
     fun af_id_key(value: String): DestinationBuilder{
-        this.af_id_key = value
+        this.af_id_key = this.af_id_key.addValue(value)
         return this
     }
 
     fun adset_id_key(value: String): DestinationBuilder{
-        this.adset_id_key = value
+        this.adset_id_key = this.adset_id_key.addValue(value)
         return this
     }
 
     fun campaign_id_key(value: String): DestinationBuilder{
-        this.campaign_id_key = value
+        this.campaign_id_key = this.campaign_id_key.addValue(value)
         return this
     }
 
     fun app_campaign_key(value: String): DestinationBuilder{
-        this.app_campaign_key = value
+        this.app_campaign_key = this.app_campaign_key.addValue(value)
         return this
     }
 
     fun adset_key(value: String): DestinationBuilder{
-        this.adset_key = value
+        this.adset_key = this.adset_key.addValue(value)
         return this
     }
 
     fun adgroup_key(value: String): DestinationBuilder{
-        this.adgroup_key = value
+        this.adgroup_key = this.adgroup_key.addValue(value)
         return this
     }
 
     fun orig_cost_key(value: String): DestinationBuilder{
-        this.orig_cost_key = value
+        this.orig_cost_key = this.orig_cost_key.addValue(value)
         return this
     }
 
     fun af_siteid_key(value: String): DestinationBuilder{
-        this.af_siteid_key = value
+        this.af_siteid_key = this.af_siteid_key.addValue(value)
         return this
     }
 
     fun build() : Destination {
+
         return Destination(
             base = base,
             base2 = base2,
@@ -119,6 +120,10 @@ class DestinationBuilder(){
             af_siteid_key = af_siteid_key,
             dev_tmz_key = dev_tmz_key
         )
+    }
+
+    fun String.addValue(value: String): String{
+        return this.replace("null", value)
     }
 }
 

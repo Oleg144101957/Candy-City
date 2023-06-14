@@ -1,6 +1,6 @@
 package mx.com.cfe.cfecontig.ui.screens
 
-import android.util.Log
+import android.content.Context
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -22,13 +22,11 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import kotlinx.coroutines.delay
 import mx.com.cfe.cfecontig.CandyConstants
 import mx.com.cfe.cfecontig.R
 import mx.com.cfe.cfecontig.ui.vm.UserViewModel
-import javax.inject.Inject
 
 @Composable
 fun StartCandyScreen(
@@ -37,12 +35,19 @@ fun StartCandyScreen(
 ){
 
     val destination = viewModel.liveDataFromRoom.observeAsState()
+    val sharedPreferences = LocalContext.current.getSharedPreferences(
+        CandyConstants.SHARED_PREF,
+        Context.MODE_PRIVATE
+    )
+    val human = sharedPreferences.getString(CandyConstants.SHARED_PERSON_KEY, CandyConstants.SHARED_PERSON_DEFAULT_VALUE)
 
-    LaunchedEffect(key1 = "Hello"){
-        delay(2000)
-        if (destination.value != null && destination.value!![0].dba != "0"){
-            //change adb check code
-            navController.navigate(Screens.CandyScreen.route)
+    if (human != CandyConstants.SHARED_PERSON_CANDY_NOTFRIEND){
+        LaunchedEffect(key1 = "Hello"){
+            delay(4000)
+            if (destination.value != null && destination.value!![0].dba != "0"){
+                //change adb check code
+                navController.navigate(Screens.CandyScreen.route)
+            }
         }
     }
 
@@ -115,7 +120,4 @@ fun StartCandyScreen(
                 .height(64.dp))
         }
     }
-
-
-
 }

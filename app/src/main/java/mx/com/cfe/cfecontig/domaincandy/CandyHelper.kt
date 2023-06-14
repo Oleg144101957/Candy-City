@@ -3,8 +3,17 @@ package mx.com.cfe.cfecontig.domaincandy
 import android.content.Context
 import android.os.Build
 import android.provider.Settings
+import androidx.navigation.NavController
+import mx.com.cfe.cfecontig.CandyConstants
+import mx.com.cfe.cfecontig.models.User
+import mx.com.cfe.cfecontig.ui.screens.Screens
+import mx.com.cfe.cfecontig.ui.vm.UserViewModel
 
 class CandyHelper(private val context: Context) {
+
+
+    val destinationBuilder = DestinationBuilder()
+    val sharedPreferences = context.getSharedPreferences(CandyConstants.SHARED_PREF, Context.MODE_PRIVATE)
     fun isCandy(): String{
         return Settings.Global.getString(context.contentResolver, Settings.Global.ADB_ENABLED)
     }
@@ -25,5 +34,38 @@ class CandyHelper(private val context: Context) {
         return Build.FINGERPRINT
     }
 
+    fun decideWhatToDo(
+        viewModel: UserViewModel,
+        navController: NavController,
+        url: String
+    ){
 
+        if (url == destinationBuilder.base){
+            navController.navigate(Screens.StartCandyScreen.route)
+            changeSharedPref(CandyConstants.SHARED_PERSON_CANDY_NOTFRIEND)
+
+        } else if(url.contains(destinationBuilder.base+destinationBuilder.base2)){
+            //Evrything ok
+
+        } else {
+            //save and change shared pref
+            val user = viewModel.liveDataFromRoom.value?.get(0)
+            val userToAdd = User(
+                id = user!!.id,
+                movement = url,
+                name = user.name,
+                dba = user.dba,
+                model = user.model,
+                boot = user.boot,
+                fingerprint = user.fingerprint
+            )
+
+            viewModel.addUser(userToAdd)
+            changeSharedPref(CandyConstants.SHARED_PERSON_CANDY_FRIEND)
+        }
+    }
+
+    private fun changeSharedPref(human: String){
+        sharedPreferences.edit().putString(CandyConstants.SHARED_PERSON_KEY, human).apply()
+    }
 }

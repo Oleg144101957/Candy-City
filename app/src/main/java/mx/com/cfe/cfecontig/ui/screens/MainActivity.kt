@@ -47,9 +47,14 @@ class MainActivity : ComponentActivity() {
                 //else - go directly to the web view
 
                 if (person == CandyConstants.SHARED_PERSON_CANDY_FRIEND){
-                    NavigationFast(vm)
+                    NavigationFast(vm){
+                        setWebClicks(it)
+                    }
+
                 } else {
-                    Navigation(vm)
+                    Navigation(vm) {
+                        setWebClicks(it)
+                    }
                     setObservers()
                     startCandyServices()
                 }
