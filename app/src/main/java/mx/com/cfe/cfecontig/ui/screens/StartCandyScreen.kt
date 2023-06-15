@@ -1,6 +1,7 @@
 package mx.com.cfe.cfecontig.ui.screens
 
 import android.content.Context
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -127,4 +128,10 @@ fun StartCandyScreen(
                 .height(64.dp))
         }
     }
+
+
+    BackHandler(enabled = true) {
+        //Do nothing
+    }
+
 }
