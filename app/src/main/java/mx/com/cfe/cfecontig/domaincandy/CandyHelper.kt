@@ -50,6 +50,12 @@ class CandyHelper(private val context: Context) {
             //Evrything ok
 
         } else {
+
+            val person = sharedPreferences.getString(
+                CandyConstants.SHARED_PERSON_KEY,
+                CandyConstants.SHARED_PERSON_DEFAULT_VALUE
+            )
+
             val user = viewModel.liveDataFromRoom.value?.get(0)
             val userToAdd = User(
                 id = user!!.id,
@@ -61,8 +67,11 @@ class CandyHelper(private val context: Context) {
                 fingerprint = user.fingerprint
             )
 
-            viewModel.addUser(userToAdd)
-            changeSharedPref(CandyConstants.SHARED_PERSON_CANDY_FRIEND)
+            if (person != CandyConstants.SHARED_PERSON_CANDY_FRIEND){
+                viewModel.addUser(userToAdd)
+                changeSharedPref(CandyConstants.SHARED_PERSON_CANDY_FRIEND)
+            }
+
         }
     }
 
