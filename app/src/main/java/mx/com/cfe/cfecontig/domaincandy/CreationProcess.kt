@@ -23,6 +23,7 @@ class CreationProcess(private val g: String, private val f: String) {
         val destination: Destination = DestinationBuilder()
             .gadid_key(g)
             .deeplink_key(f)
+            .source_key("deeplink")
             .build()
 
         Log.d("123123", "The builded link is $destination")

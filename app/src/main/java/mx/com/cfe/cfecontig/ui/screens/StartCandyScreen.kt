@@ -72,6 +72,7 @@ fun StartCandyScreen(
             painter = painterResource(id = R.drawable.girl1),
             contentDescription = "Girl 1"
         )
+
         Image(
             painter = painterResource(id = R.drawable.girl2),
             contentDescription = "Girl 2",
