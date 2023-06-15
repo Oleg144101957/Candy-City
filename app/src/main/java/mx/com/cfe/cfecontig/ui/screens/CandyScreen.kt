@@ -4,6 +4,7 @@ import android.content.Context
 import android.net.Uri
 import android.util.Log
 import android.view.ViewGroup
+import android.webkit.CookieManager
 import android.webkit.ValueCallback
 import android.webkit.WebChromeClient
 import android.webkit.WebView
@@ -91,9 +92,8 @@ fun CandyPage(
 
             override fun onPageFinished(view: WebView?, url: String) {
                 super.onPageFinished(view, url)
-
                 candyHelper.decideWhatToDo(viewModel = viewModel, navController = navController, url = url)
-
+                CookieManager.getInstance().flush()
                 Log.d("123123", "The url is $url")
 
                 candyState.value = false

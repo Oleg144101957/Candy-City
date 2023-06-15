@@ -50,8 +50,6 @@ class MainActivity : ComponentActivity() {
                 Navigation(viewModel = vm){
                     setBack(it)
                 }
-
-
             }
         }
     }
