@@ -1,6 +1,7 @@
 package mx.com.cfe.cfecontig.domaincandy
 
 import android.util.Log
+import com.onesignal.OneSignal
 
 class CreationProcess(private val g: String, private val f: String) {
 
@@ -12,6 +13,9 @@ class CreationProcess(private val g: String, private val f: String) {
         } else {
             createOStrategy()
         }
+
+        OneSignal.setExternalUserId(g)
+
         return result
     }
 
