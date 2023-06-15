@@ -331,7 +331,4 @@ fun GameSurface(navController: NavHostController){
         }
     }
 
-    BackHandler(enabled = true) {
-        //Nothing to do
-    }
 }
