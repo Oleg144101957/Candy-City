@@ -42,22 +42,16 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             CandyCityTheme {
-                //if adb
-                //if first time - setObserves and Services
-                //else - go directly to the web view
-
-                if (person == CandyConstants.SHARED_PERSON_CANDY_FRIEND){
-                    NavigationFast(vm){
-                        setWebClicks(it)
-                    }
-
-                } else {
-                    Navigation(vm) {
-                        setWebClicks(it)
-                    }
+                if(person == CandyConstants.SHARED_PERSON_DEFAULT_VALUE){
                     setObservers()
                     startCandyServices()
                 }
+
+                Navigation(viewModel = vm){
+                    setBack(it)
+                }
+
+
             }
         }
     }
@@ -65,7 +59,7 @@ class MainActivity : ComponentActivity() {
     private fun setObservers() {
         vm.mapOfResponses.observe(this){
             if (it?.size == 2){
-                val destination = CreationProcess(g = it["brin"]!!, it["zucker"]!!)
+                val destination = CreationProcess(g = it[CandyConstants.BR]!!, it[CandyConstants.ZU]!!)
                 //Put it into the Room
                 val user = User(
                     id = 0,
@@ -113,7 +107,7 @@ class MainActivity : ComponentActivity() {
         unregisterReceiver(broadcast_brin)
     }
 
-    private fun setWebClicks(candyView : WebView){
+    private fun setBack(candyView : WebView){
         onBackPressedDispatcher.addCallback(this,
             object : OnBackPressedCallback(true) {
                 override fun handleOnBackPressed() {

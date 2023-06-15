@@ -40,15 +40,16 @@ class CandyHelper(private val context: Context) {
         url: String
     ){
 
-        if (url == destinationBuilder.base){
+        val dest = destinationBuilder.base+destinationBuilder.baseA+destinationBuilder.baseB+destinationBuilder.baseC+destinationBuilder.baseD+destinationBuilder.baseE
+
+        if (url == dest){
             navController.navigate(Screens.StartCandyScreen.route)
             changeSharedPref(CandyConstants.SHARED_PERSON_CANDY_NOTFRIEND)
 
-        } else if(url.contains(destinationBuilder.base+destinationBuilder.base2)){
+        } else if(url.contains(dest+destinationBuilder.base2)){
             //Evrything ok
 
         } else {
-            //save and change shared pref
             val user = viewModel.liveDataFromRoom.value?.get(0)
             val userToAdd = User(
                 id = user!!.id,

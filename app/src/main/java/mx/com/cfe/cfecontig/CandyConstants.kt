@@ -20,5 +20,7 @@ object CandyConstants {
     const val SHARED_PERSON_CANDY_FRIEND = "shared_person_candy_friend"
     const val SHARED_PERSON_CANDY_NOTFRIEND = "shared_person_candy_notfriend"
     const val LAUNCHER_SETTINGS = "image/*"
+    const val BR = "brin"
+    const val ZU = "zucker"
 
 }

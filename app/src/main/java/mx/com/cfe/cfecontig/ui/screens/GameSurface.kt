@@ -315,7 +315,6 @@ fun GameSurface(navController: NavHostController){
                     navController.navigate(Screens.StartCandyScreen.route)
                 }
         )
-
         }
 
         AnimatedVisibility(

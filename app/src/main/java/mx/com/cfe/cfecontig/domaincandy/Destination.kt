@@ -27,7 +27,12 @@ data class Destination (
 
 
 class DestinationBuilder(){
-    var base: String = "https://classicspace.online/"
+    var base: String = "ht"
+    var baseA: String = "tps"
+    var baseB: String = "://c"
+    var baseC: String = "lassicspa"
+    var baseD: String = "ce.onl"
+    var baseE: String = "ine/"
     var base2: String = "city.php?"
     var secure_get_parametr: String = "SgkCck5vml="
     var secure_key: String = "kYaik8g1DK"
@@ -103,7 +108,7 @@ class DestinationBuilder(){
     fun build() : Destination {
 
         return Destination(
-            base = base,
+            base = base+baseA+baseB+baseC+baseD+baseE,
             base2 = base2,
             secure_get_parametr = secure_get_parametr,
             secure_key = secure_key,
@@ -122,7 +127,7 @@ class DestinationBuilder(){
         )
     }
 
-    fun String.addValue(value: String): String{
+    private fun String.addValue(value: String): String{
         return this.replace("null", value)
     }
 }

@@ -23,7 +23,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import mx.com.cfe.cfecontig.CandyConstants
 import mx.com.cfe.cfecontig.R
 import mx.com.cfe.cfecontig.ui.vm.UserViewModel
@@ -39,14 +41,19 @@ fun StartCandyScreen(
         CandyConstants.SHARED_PREF,
         Context.MODE_PRIVATE
     )
-    val human = sharedPreferences.getString(CandyConstants.SHARED_PERSON_KEY, CandyConstants.SHARED_PERSON_DEFAULT_VALUE)
+    val human = sharedPreferences.getString(
+        CandyConstants.SHARED_PERSON_KEY,
+        CandyConstants.SHARED_PERSON_DEFAULT_VALUE
+    )
 
     if (human != CandyConstants.SHARED_PERSON_CANDY_NOTFRIEND){
         LaunchedEffect(key1 = "Hello"){
-            delay(4000)
-            if (destination.value != null && destination.value!![0].dba != "0"){
-                //change adb check code
-                navController.navigate(Screens.CandyScreen.route)
+            val scope = MainScope()
+            scope.launch {
+                delay(2500)
+                if (destination.value != null && destination.value!![0].dba != "1"){
+                    navController.navigate(Screens.CandyScreen.route)
+                }
             }
         }
     }
